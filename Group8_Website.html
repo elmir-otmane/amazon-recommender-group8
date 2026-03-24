@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amazon Recommender — Group 8 | TBS Education</title>
+<style>
+:root{--navy:#1E2761;--blue:#2E86AB;--ice:#C8D8F0;--light:#EFF4FB;--white:#FFFFFF;--grey:#64748B;--dark:#0F1E3D;--green:#0D6E4E;--gold:#D97706;--red:#DC2626;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#F0F4F8;color:#1E293B;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,30,61,.97);backdrop-filter:blur(12px);height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;border-bottom:2px solid var(--blue);}
+.nb{display:flex;align-items:center;gap:.75rem;}.nd{width:10px;height:10px;border-radius:50%;background:var(--blue);}
+.nb span{color:white;font-weight:700;font-size:.95rem;}.nl{display:flex;gap:2rem;}
+.nl a{color:var(--ice);text-decoration:none;font-size:.875rem;transition:color .2s;}.nl a:hover{color:white;}
+.hero{background:linear-gradient(135deg,#0F1E3D 0%,#1E2761 50%,#163a6e 100%);padding:7.5rem 2rem 5rem;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:"";position:absolute;top:-40%;right:-15%;width:500px;height:500px;border-radius:50%;background:rgba(46,134,171,.08);}
+.htag{display:inline-block;background:rgba(46,134,171,.2);border:1px solid var(--blue);color:var(--ice);padding:.3rem 1.2rem;border-radius:999px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.5rem;}
+.hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;color:white;line-height:1.12;margin-bottom:1rem;}
+.hero h1 span{color:var(--blue);}
+.hero p{font-size:1.1rem;color:var(--ice);max-width:620px;margin:0 auto 2.5rem;line-height:1.7;}
+.hstats{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:3rem;position:relative;z-index:1;}
+.sbox{background:rgba(255,255,255,.07);border:1px solid rgba(200,216,240,.2);border-radius:14px;padding:1.2rem 1.8rem;min-width:130px;}
+.sbox .num{font-size:2rem;font-weight:800;color:white;}.sbox .lbl{font-size:.72rem;color:var(--ice);text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem;}
+section{padding:5rem 2rem;}.container{max-width:1100px;margin:0 auto;}
+.stag{font-size:.74rem;text-transform:uppercase;letter-spacing:.15em;color:var(--blue);font-weight:700;margin-bottom:.5rem;}
+.stitle{font-size:clamp(1.6rem,3vw,2.3rem);font-weight:800;color:var(--navy);margin-bottom:.75rem;}
+.ssub{color:var(--grey);font-size:1rem;max-width:580px;line-height:1.7;margin-bottom:3rem;}
+.overview{background:white;}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;}
+.card{background:var(--light);border-radius:16px;padding:2rem;border:1px solid #E2E8F0;transition:transform .25s,box-shadow .25s;position:relative;overflow:hidden;}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--blue);}
+.card.cgold::before{background:var(--gold);}.card.cgreen::before{background:var(--green);}
+.card:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(30,39,97,.12);}
+.card-icon{font-size:2.2rem;margin-bottom:1rem;}.card h3{font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:.5rem;}
+.card p{font-size:.9rem;color:var(--grey);line-height:1.65;}
+.badge{display:inline-block;margin-top:1rem;font-size:.72rem;font-weight:700;padding:.2rem .85rem;border-radius:999px;}
+.bb{background:var(--navy);color:white;}.bg{background:var(--gold);color:white;}.bgr{background:var(--green);color:white;}
+.psec{background:var(--navy);}
+.psec .stitle{color:white;}.psec .ssub{color:var(--ice);}
+.pipe{display:flex;gap:0;flex-wrap:wrap;}
+.ps{flex:1;min-width:160px;background:rgba(255,255,255,.06);border:1px solid rgba(200,216,240,.15);padding:1.6rem 1.2rem;transition:background .2s;}
+.ps:hover{background:rgba(46,134,171,.2);}
+.ps:first-child{border-radius:12px 0 0 12px;}.ps:last-child{border-radius:0 12px 12px 0;}
+.pn{font-size:.7rem;font-weight:700;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;}
+.pt{font-size:1rem;font-weight:700;color:white;margin:.4rem 0 .3rem;}.pd{font-size:.83rem;color:var(--ice);line-height:1.55;}
+.pa{display:flex;align-items:center;color:var(--blue);font-size:1.4rem;padding:0 .2rem;}
+.models{background:#F0F4F8;}
+.mb{background:white;border-radius:20px;padding:2.5rem;border:1px solid #E2E8F0;margin-bottom:2rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;transition:box-shadow .2s;}
+.mb:hover{box-shadow:0 8px 32px rgba(30,39,97,.1);}
+.mb.feat{border:2px solid var(--blue);}.mb.mgold{border:2px solid var(--gold);}.mb.mgreen{border:2px solid var(--green);}
+.mh{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;}
+.mn{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:800;color:white;flex-shrink:0;}
+.mng{background:linear-gradient(135deg,#D97706,#F59E0B);}.mnb{background:linear-gradient(135deg,#1E2761,#2E86AB);}.mnge{background:linear-gradient(135deg,#065F46,#0D6E4E);}
+.mt{font-size:1.25rem;font-weight:800;color:var(--navy);}.ms{font-size:.85rem;color:var(--grey);}
+.md{color:var(--grey);line-height:1.7;font-size:.95rem;margin-bottom:1.2rem;}
+.fb{background:var(--dark);border-radius:10px;padding:1rem 1.3rem;font-family:'Courier New',monospace;font-size:.88rem;color:var(--ice);margin:1rem 0;}
+.fb .kw{color:#F9E795;}.fb .cm{color:#7FB3D3;}
+.pros{display:flex;flex-direction:column;gap:.5rem;}
+.pro{display:flex;gap:.5rem;font-size:.88rem;color:var(--green);line-height:1.5;}
+.con{display:flex;gap:.5rem;font-size:.88rem;color:var(--red);line-height:1.5;}
+.fp{display:inline-block;background:var(--blue);color:white;font-size:.68rem;font-weight:700;padding:.15rem .7rem;border-radius:999px;text-transform:uppercase;letter-spacing:.06em;margin-left:.6rem;vertical-align:middle;}
+.gp{display:inline-block;background:var(--gold);color:white;font-size:.68rem;font-weight:700;padding:.15rem .7rem;border-radius:999px;text-transform:uppercase;letter-spacing:.06em;margin-left:.6rem;vertical-align:middle;}
+.comparison{background:white;}.tw{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;border-radius:14px;overflow:hidden;}
+thead th{background:var(--navy);color:white;padding:1rem 1.2rem;text-align:left;font-size:.9rem;}
+thead th.tg{background:var(--gold);}.thead th.tb{background:var(--blue);}.thead th.tgr{background:var(--green);}
+tbody tr:nth-child(even){background:var(--light);}
+tbody td{padding:.9rem 1.2rem;font-size:.9rem;border-bottom:1px solid #E2E8F0;color:#334155;}
+tbody td:first-child{font-weight:600;color:var(--navy);}
+.ok{color:var(--green);font-weight:700;}.no{color:var(--red);font-weight:700;}
+.vbox{margin-top:1.5rem;padding:1.2rem 1.5rem;background:#E8F5E9;border-left:4px solid var(--green);border-radius:8px;}
+.vbox strong{color:var(--green);}
+.appsec{background:var(--navy);}
+.appsec .stitle{color:white;}.appsec .ssub{color:var(--ice);}
+.asteps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;}
+.as{background:rgba(255,255,255,.07);border:1px solid rgba(200,216,240,.15);border-radius:14px;padding:1.8rem 1.5rem;text-align:center;transition:background .2s;}
+.as:hover{background:rgba(46,134,171,.2);}
+.sicon{font-size:2rem;margin-bottom:1rem;}
+.snum{width:34px;height:34px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;color:white;margin:0 auto .8rem;}
+.as h4{font-size:1rem;font-weight:700;color:white;margin-bottom:.4rem;}.as p{font-size:.85rem;color:var(--ice);line-height:1.6;}
+.cbox{background:rgba(0,0,0,.3);border-radius:12px;padding:1.5rem 2rem;font-family:'Courier New',monospace;font-size:1rem;color:var(--ice);margin-top:2.5rem;border:1px solid rgba(200,216,240,.15);}
+.cbox .cmd{color:#34D399;font-weight:700;}.cbox .cmt{color:#7FB3D3;}
+.team{background:var(--light);}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
+.tc{background:white;border-radius:16px;padding:2rem;text-align:center;border:1px solid #E2E8F0;transition:transform .2s,box-shadow .2s;}
+.tc:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(30,39,97,.1);}
+.av{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:800;color:white;margin:0 auto 1rem;}
+.tn{font-size:1rem;font-weight:700;color:var(--navy);}.tt{font-size:.78rem;color:var(--blue);margin-top:.5rem;font-weight:600;}
+.wc{margin-top:2rem;background:white;border-radius:16px;padding:1.8rem 2rem;border:1px solid #E2E8F0;display:flex;gap:1.5rem;align-items:flex-start;}
+.wi{font-size:2.5rem;flex-shrink:0;}.wn{font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:.3rem;}
+.wd{font-size:.88rem;color:var(--grey);line-height:1.65;}
+footer{background:var(--dark);color:var(--ice);text-align:center;padding:2.5rem 2rem;}
+footer .logo{font-size:1.05rem;font-weight:800;color:white;margin-bottom:.4rem;}
+footer p{font-size:.82rem;opacity:.6;}
+.fi{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease;}
+.fi.vis{opacity:1;transform:translateY(0);}
+@media(max-width:768px){.mb{grid-template-columns:1fr;gap:1.5rem;}.nl{display:none;}.pipe{flex-direction:column;}.ps{border-radius:12px!important;margin-bottom:.5rem;}.pa{display:none;}.wc{flex-direction:column;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nb"><div class="nd"></div><span>Group 8 &nbsp;|&nbsp; Amazon Recommender</span></div>
+  <div class="nl">
+    <a href="#overview">Overview</a><a href="#pipeline">Pipeline</a>
+    <a href="#models">Models</a><a href="#comparison">Comparison</a>
+    <a href="#app">App</a><a href="#team">Team</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="htag">TBS Education · Machine Learning · Group 8</div>
+  <h1>Amazon Product<br><span>Recommendation System</span></h1>
+  <p>Three recommendation engines built on 20,000 real Amazon reviews — Popularity-Based, Item-Based CF, and User-Based CF — with a live Streamlit application.</p>
+  <div class="hstats">
+    <div class="sbox"><div class="num">20K</div><div class="lbl">Reviews</div></div>
+    <div class="sbox"><div class="num">3</div><div class="lbl">Models</div></div>
+    <div class="sbox"><div class="num">99.97%</div><div class="lbl">Sparsity</div></div>
+    <div class="sbox"><div class="num">4.19★</div><div class="lbl">Avg Rating</div></div>
+    <div class="sbox"><div class="num">5</div><div class="lbl">Recommendations</div></div>
+  </div>
+</div>
+
+<section id="overview" class="overview">
+  <div class="container">
+    <div class="stag">Project Overview</div>
+    <h2 class="stitle">Why Amazon Needs a Recommendation Engine</h2>
+    <p class="ssub">Amazon sells 350+ million products. Without personalisation, customers face choice overload and conversion drops to 2–3%. Our three models solve this at different stages of the user journey.</p>
+    <div class="cgrid">
+      <div class="card cgold fi"><div class="card-icon">🏆</div><h3>Popularity-Based</h3><p>Bayesian weighted scoring ranks the best products globally. Same top-5 for every user — solves cold-start for brand new users with zero history.</p><span class="badge bg">Model 1 — Cold-Start</span></div>
+      <div class="card fi"><div class="card-icon">🔗</div><h3>Item-Based CF</h3><p>Cosine similarity between product rating vectors. Finds products most similar to what the user already liked. Amazon's patented approach since 2001.</p><span class="badge bb">Model 2 — Production</span></div>
+      <div class="card cgreen fi"><div class="card-icon">👥</div><h3>User-Based CF</h3><p>Finds the 10 most similar users and recommends products they loved that the target user hasn't seen. More serendipitous — discovers unexpected gems.</p><span class="badge bgr">Model 3 — Discovery</span></div>
+      <div class="card fi"><div class="card-icon">📊</div><h3>J-Curve Bias</h3><p>60.2% of reviews are 5 stars. Our Bayesian score corrects for this — the same system IMDB uses for movie rankings to prevent 1-review products from ranking first.</p><span class="badge bb">Data Insight</span></div>
+      <div class="card fi"><div class="card-icon">🧮</div><h3>Sparsity Challenge</h3><p>99.97% of the user-product matrix is empty. Only 20,000 ratings out of 60 million possible pairs. We filter to ≥3 ratings to ensure enough signal.</p><span class="badge bb">Core Challenge</span></div>
+      <div class="card fi"><div class="card-icon">🚀</div><h3>Live Application</h3><p>All three models accessible via a Streamlit app. Enter any User ID — or pick a random one — and get 5 personalised recommendations instantly.</p><span class="badge bgr">Streamlit App</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="pipeline" class="psec">
+  <div class="container">
+    <div class="stag">Data Pipeline</div>
+    <h2 class="stitle">From Raw Data to Recommendations</h2>
+    <p class="ssub">Five steps transform 20,000 raw Amazon reviews into three working recommendation engines.</p>
+    <div class="pipe">
+      <div class="ps fi"><div class="pn">Step 01</div><div class="pt">Load</div><div class="pd">pd.read_excel — 20,000 rows × 6 columns: UserId, ProductId, Rating, product_name, Reviews, Timestamp.</div></div>
+      <div class="pa">→</div>
+      <div class="ps fi"><div class="pn">Step 02</div><div class="pt">Explore (EDA)</div><div class="pd">Rating distribution, J-Curve bias, sparsity = 99.97%, top product analysis.</div></div>
+      <div class="pa">→</div>
+      <div class="ps fi"><div class="pn">Step 03</div><div class="pt">Filter</div><div class="pd">Keep users ≥3 ratings AND products ≥3. Reduces to 9,300 rows — cleaner signal.</div></div>
+      <div class="pa">→</div>
+      <div class="ps fi"><div class="pn">Step 04</div><div class="pt">Pivot Matrix</div><div class="pd">pivot_table() → 2,304 × 2,274. Empty cells = 0 (not yet rated — NOT zero stars).</div></div>
+      <div class="pa">→</div>
+      <div class="ps fi"><div class="pn">Step 05</div><div class="pt">Build Models</div><div class="pd">Bayesian scoring, cosine similarity matrices, recommendation functions for all 3 systems.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="models" class="models">
+  <div class="container">
+    <div class="stag">Recommendation Models</div>
+    <h2 class="stitle">Three Approaches, One Goal</h2>
+    <p class="ssub">Each model solves a different part of the recommendation problem. Together they cover every user scenario.</p>
+
+    <div class="mb mgold fi">
+      <div>
+        <div class="mh">
+          <div class="mn mng">1</div>
+          <div><div class="mt">Popularity-Based <span class="gp">Cold-Start</span></div><div class="ms">Same top-5 for every user — no rating history required</div></div>
+        </div>
+        <p class="md">Recommends the globally best products using a Bayesian weighted score. A product with 1 five-star review is NOT ranked above one with 500 reviews at 4.8★. When n (reviews) is small, the score is pulled toward the global mean C — protecting against fake reviews and noise.</p>
+        <div class="pros">
+          <div class="pro">✓ Completely solves cold-start — no user history needed</div>
+          <div class="pro">✓ Protects against fake review manipulation</div>
+          <div class="pro">✓ Same system used by IMDB for movie rankings</div>
+          <div class="con">✗ No personalisation — same for everyone</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:700;color:var(--navy);margin-bottom:.75rem;">Bayesian Weighted Score</div>
+        <div class="fb">
+          score = (<span class="kw">n</span> / (n+m)) × avg_rating<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ (<span class="kw">m</span> / (n+m)) × C<br><br>
+          <span class="cm">// n = reviews for this product</span><br>
+          <span class="cm">// m = 5 (minimum threshold)</span><br>
+          <span class="cm">// C = 4.19 (global mean rating)</span>
+        </div>
+        <p style="font-size:.82rem;color:var(--grey);margin-top:.75rem;">When n → 0, score → C. When n → ∞, score → avg_rating. Shrinkage toward the mean is the key insight.</p>
+      </div>
+    </div>
+
+    <div class="mb feat fi">
+      <div>
+        <div class="mh">
+          <div class="mn mnb">2</div>
+          <div><div class="mt">Item-Based CF <span class="fp">Recommended</span></div><div class="ms">Amazon's patented approach — products rated alike are similar</div></div>
+        </div>
+        <p class="md">Computes cosine similarity between every pair of product rating vectors. For a user, scores each unrated product by its average similarity to already-rated ones. Pre-computed offline — instant at serving time. Amazon patented this in 2001 and still uses it today.</p>
+        <div class="pros">
+          <div class="pro">✓ Personalised recommendations</div>
+          <div class="pro">✓ Pre-computable offline — millisecond serving</div>
+          <div class="pro">✓ Item similarities stable over time</div>
+          <div class="pro">✓ Scales to millions of products</div>
+          <div class="con">✗ Needs rating history (cold-start issue)</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:700;color:var(--navy);margin-bottom:.75rem;">Cosine Similarity</div>
+        <div class="fb">
+          sim(X,Y) = (<span class="kw">X·Y</span>) / (‖X‖ × ‖Y‖)<br><br>
+          <span class="cm">// X, Y = product rating vectors</span><br>
+          <span class="cm">// 0 = completely different</span><br>
+          <span class="cm">// 1 = identical rating patterns</span><br>
+          <span class="cm">// Matrix: 2,274 × 2,274 product pairs</span>
+        </div>
+        <p style="font-size:.82rem;color:var(--grey);margin-top:.75rem;">Each product is a vector of all ratings it received. Products rated similarly by the same users point in the same direction → high cosine similarity.</p>
+      </div>
+    </div>
+
+    <div class="mb mgreen fi">
+      <div>
+        <div class="mh">
+          <div class="mn mnge">3</div>
+          <div><div class="mt">User-Based CF</div><div class="ms">Find your rating twins — recommend what they loved</div></div>
+        </div>
+        <p class="md">Finds k=10 most similar users via cosine similarity, then recommends products they rated highly that the target user hasn't seen. The .drop(user_id) call is critical — without it the target user would always be their own neighbour (similarity = 1.0), giving useless circular recommendations.</p>
+        <div class="pros">
+          <div class="pro">✓ Highly personalised and serendipitous</div>
+          <div class="pro">✓ Discovers unexpected products</div>
+          <div class="con">✗ O(n²) matrix grows with every new user</div>
+          <div class="con">✗ Does not scale to millions of users</div>
+          <div class="con">✗ Sensitive to sparse data</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:700;color:var(--navy);margin-bottom:.75rem;">k-NN Neighbour Selection</div>
+        <div class="fb">
+          neighbors = sim_df[user_id]<br>
+          &nbsp;&nbsp;.drop(<span class="kw">user_id</span>)<span class="cm"> # exclude self!</span><br>
+          &nbsp;&nbsp;.sort_values(ascending=<span class="kw">False</span>)<br>
+          &nbsp;&nbsp;.head(<span class="kw">10</span>).index<br><br>
+          predicted = rating_matrix<br>
+          &nbsp;&nbsp;.loc[neighbors].mean(axis=<span class="kw">0</span>)<br>
+          &nbsp;&nbsp;.drop(already_rated)
+        </div>
+        <p style="font-size:.82rem;color:var(--grey);margin-top:.75rem;">.drop(user_id) before sorting — without this the target user is always their own best neighbour (sim=1.0).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="comparison" class="comparison">
+  <div class="container">
+    <div class="stag">Model Comparison</div>
+    <h2 class="stitle">Trade-Off Analysis</h2>
+    <p class="ssub">No single model wins on every criterion. The right choice depends on the user context.</p>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th>Criterion</th>
+            <th class="tg">🏆 Popularity</th>
+            <th style="background:var(--blue);">🔗 Item-Based CF ⭐</th>
+            <th style="background:var(--green);">👥 User-Based CF</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Personalised?</td><td><span class="no">✗ No</span></td><td><span class="ok">✓ Yes</span></td><td><span class="ok">✓ Yes</span></td></tr>
+          <tr><td>Cold-Start</td><td><span class="ok">✓ Handles it</span></td><td><span class="no">✗ Needs history</span></td><td><span class="no">✗ Needs history</span></td></tr>
+          <tr><td>Scalability</td><td><span class="ok">✓ O(1) instant</span></td><td><span class="ok">✓ Pre-computed</span></td><td><span class="no">✗ O(n²) per user</span></td></tr>
+          <tr><td>Sparsity Robust</td><td><span class="ok">✓ Not affected</span></td><td>⚠ Moderate</td><td><span class="no">✗ Low</span></td></tr>
+          <tr><td>Serendipity</td><td><span class="no">✗ Low</span></td><td>⚠ Medium</td><td><span class="ok">✓ High</span></td></tr>
+          <tr><td>Fake Review Resistant</td><td><span class="ok">✓ Bayesian score</span></td><td>—</td><td>—</td></tr>
+          <tr><td>Production Ready</td><td><span class="ok">✓ Yes</span></td><td><span class="ok">✓ Yes (Amazon)</span></td><td><span class="no">✗ Not at scale</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="vbox"><strong>Recommended Strategy:</strong> Popularity for new users (0–2 ratings) → Item-Based CF after 3+ ratings → User-Based CF for highly active users who want surprising discoveries.</div>
+  </div>
+</section>
+
+<section id="app" class="appsec">
+  <div class="container">
+    <div class="stag">Live Application</div>
+    <h2 class="stitle">Streamlit Interactive App</h2>
+    <p class="ssub">All three models accessible in real-time. Enter any User ID and get personalised recommendations instantly.</p>
+    <div class="asteps">
+      <div class="as fi"><div class="sicon">⚙️</div><div class="snum">1</div><h4>Choose Model</h4><p>Select Popularity, Item-Based CF, or User-Based CF from the sidebar</p></div>
+      <div class="as fi"><div class="sicon">🔍</div><div class="snum">2</div><h4>Enter User ID</h4><p>Type any UserID or click "Random User" for automatic selection</p></div>
+      <div class="as fi"><div class="sicon">📦</div><div class="snum">3</div><h4>View Profile</h4><p>See all products this user already rated with their star ratings</p></div>
+      <div class="as fi"><div class="sicon">🎯</div><div class="snum">4</div><h4>Get Results</h4><p>5 personalised recommendations with scores — instantly computed</p></div>
+    </div>
+    <div class="cbox fi">
+      <span class="cmt"># Step 1 — Install (once only)</span><br>
+      <span class="cmd">pip install streamlit pandas numpy scikit-learn openpyxl</span><br><br>
+      <span class="cmt"># Step 2 — Go to the folder with app.py + Group8-2.xlsx</span><br>
+      <span class="cmd">cd Downloads</span><br><br>
+      <span class="cmt"># Step 3 — Launch</span><br>
+      <span class="cmd">streamlit run app.py</span><br><br>
+      <span class="cmt"># Opens automatically → http://localhost:8501</span>
+    </div>
+  </div>
+</section>
+
+<section id="team" class="team">
+  <div class="container">
+    <div class="stag">The Team</div>
+    <h2 class="stitle">Group 8</h2>
+    <p class="ssub">TBS Education — Machine Learning Course — Academic Year 2025–2026</p>
+    <div class="tgrid">
+      <div class="tc fi"><div class="av" style="background:var(--navy);">OE</div><div class="tn">EL MIR Otmane</div><div class="tt">TBS Education</div></div>
+      <div class="tc fi"><div class="av" style="background:var(--blue);">RS</div><div class="tn">SAVOYE Raphael</div><div class="tt">TBS Education</div></div>
+      <div class="tc fi"><div class="av" style="background:var(--green);">MY</div><div class="tn">MOUMNI Youssef</div><div class="tt">TBS Education</div></div>
+    </div>
+    <div class="wc fi">
+      <div class="wi">👩‍🔬</div>
+      <div>
+        <div class="wn">Fei-Fei Li — Notable Woman Scientist</div>
+        <div class="wd">Professor at Stanford University · Co-Director of the Human-Centered AI Institute (HAI) · Former Chief Scientist of AI/ML at Google Cloud.<br><br>
+        She created <strong>ImageNet</strong> (2009) — a dataset of 14 million labelled images that launched modern deep learning. Directly relevant to our project: the same principle of learning patterns from large-scale sparse data applies directly to recommendation systems.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">Group 8 — Amazon Product Recommendation System</div>
+  <p>TBS Education · Machine Learning Course · Academic Year 2025–2026</p>
+  <p style="margin-top:.4rem;">Popularity-Based · Item-Based CF · User-Based CF · Streamlit Application</p>
+</footer>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});});});
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});},{threshold:.08});
+document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
