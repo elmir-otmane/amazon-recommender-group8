@@ -286,8 +286,10 @@ with st.sidebar:
 # ── HERO ──────────────────────────────────────────────────────────────────────
 st.markdown("""
 <div class="hero">
-  <div class="hero-title">🛒 Amazon Product <span>Recommendation System</span></div>
-  <div class="hero-sub">Item-Based & User-Based Collaborative Filtering + Popularity-Based Recommender</div>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
+       style="height:38px;margin-bottom:1rem;filter:brightness(0) invert(1);display:block;margin-left:auto;margin-right:auto;" alt="Amazon"/>
+  <div class="hero-title">Product <span>Recommendation System</span></div>
+  <div class="hero-sub">Popularity-Based &nbsp;·&nbsp; Item-Based CF &nbsp;·&nbsp; User-Based CF</div>
   <div class="hero-team">Group 8 — TBS Education &nbsp;|&nbsp; EL MIR Otmane &nbsp;•&nbsp; SAVOYE Raphael &nbsp;•&nbsp; MOUMNI Youssef</div>
 </div>
 """, unsafe_allow_html=True)
