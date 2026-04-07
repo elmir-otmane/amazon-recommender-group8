@@ -343,10 +343,20 @@ if go or ("rnd" in st.session_state and "Pop" not in model):
     # ── CF MODELS ─────────────────────────────────────────────────────────────
     else:
         uid = uid_input.strip() if uid_input else ""
+
+        # Fix: try to match even if user typed with wrong case or spaces
+        if uid and uid not in rm.index:
+            all_ids = rm.index.tolist()
+            uid_clean = uid.upper().strip()
+            matches = [i for i in all_ids if str(i).upper().strip() == uid_clean]
+            if matches:
+                uid = matches[0]
+
         if not uid:
             st.warning("👈 Please enter a User ID in the sidebar or click **Random User**")
         elif uid not in rm.index:
-            st.error(f"❌ User **{uid}** not found in the filtered dataset. Click **Random User** to pick a valid one.")
+            sample = rm.index[0]
+            st.error(f"❌ User **{uid_input.strip()}** not found. User IDs look like: `{sample}` — click **Random User** to pick one automatically.")
         else:
             col_left, col_right = st.columns([1, 1], gap="large")
 
