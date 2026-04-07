@@ -304,7 +304,7 @@ kpi_data = [
     ("👤", f"{df['UserId'].nunique():,}", "Unique Users", "#0D6E4E"),
     ("🏷️", f"{df['ProductId'].nunique():,}", "Products", "#7C3AED"),
     ("⭐", f"{df['Rating'].mean():.2f}", "Avg Rating", "#D97706"),
-    ("📊", f"{sparsity:.1%}", "Sparsity", "#DC2626"),
+    ("📊", f"{sparsity:.0.99.7%}", "Sparsity", "#DC2626"),
 ]
 for col, (icon, num, lbl, color) in zip([c1,c2,c3,c4,c5], kpi_data):
     col.markdown(f"""
