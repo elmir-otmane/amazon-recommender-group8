@@ -74,7 +74,10 @@ header {visibility: hidden;}
 section[data-testid="stSidebar"] {
     background: #0D1B2A;
 }
-section[data-testid="stSidebar"] * { color: white !important; }
+section[data-testid="stSidebar"] * { color: #C8D8F0 !important; }
+section[data-testid="stSidebar"] .info-pill { background: #1E3A5F !important; color: #E8F4FD !important; border-left: 4px solid #FF9900 !important; }
+section[data-testid="stSidebar"] .info-pill b { color: #FF9900 !important; }
+section[data-testid="stSidebar"] .info-pill code { background: #0D1B2A !important; color: #93C5FD !important; }
 section[data-testid="stSidebar"] .stRadio label { color: #C8D8F0 !important; }
 section[data-testid="stSidebar"] h1, 
 section[data-testid="stSidebar"] h2,
@@ -430,4 +433,4 @@ with st.expander("📊 View Model Comparison Table"):
     """, unsafe_allow_html=True)
 
 st.markdown("---")
-st.caption("Group 8 — TBS Education | EL MIR Otmane • SAVOYE Raphael • MOUMNI Youssef | Amazon Beauty & Personal Care | 20,000 reviews | 3 Recommendation Models")
+st.caption("Group 8 — TBS Education | EL MIR Otmane • SAVOYE Raphael • MOUMNI Youssef | Amazon Product Reviews | 20,000 reviews | 3 Recommendation Models")
